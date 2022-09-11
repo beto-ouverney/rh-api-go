@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  golang:
+    build: .
+    image: golang
+    user: root
+    working_dir: /app
+    volumes:
+      - ./:/app
+    container_name: rh_api
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    networks:
+      - dev
+  redis:
+    container_name: redis
+    image: redis:7.0.2-alpine
+    restart: always
+    networks:
+      - dev
+  db:
+    container_name: rh_db
+    image: postgres
+    platform: linux/x86_64
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    volumes:
+      - ./db/migrations/000001_funcionarios.up.sql:/docker-entrypoint-initdb.d/000001_funcionarios.up.sql
+    networks:
+      - dev
+networks:
+  dev:
+    driver: bridge
