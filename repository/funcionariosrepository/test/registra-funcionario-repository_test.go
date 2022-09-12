@@ -55,7 +55,7 @@ func Test_funcionariosRepository_Register(t *testing.T) {
 			ctx := context.Background()
 
 			m := new(mocks.IFuncionariosRepository)
-			m.On("Register", mock.AnythingOfType("*context.emptyCtx"), tt.args.funcionario).Return(tt.want, nil)
+			m.On("Register", mock.AnythingOfType("*context.emptyCtx"), tt.args.funcionario).Return(tt.want, tt.want1)
 
 			got, got1 := m.Register(ctx, tt.args.funcionario)
 			assertions.Equal(tt.want, got, tt.msg)

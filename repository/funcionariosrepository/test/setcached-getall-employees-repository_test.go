@@ -63,7 +63,7 @@ func Test_funcionariosRepository_SetCacheGetAllEmployees(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 
 			m := new(mocks.IFuncionariosRepository)
-			m.On("SetCacheGetAllEmployees", tt.args.funcionarios).Return(tt.want, nil)
+			m.On("SetCacheGetAllEmployees", tt.args.funcionarios).Return(tt.want)
 
 			got := m.SetCacheGetAllEmployees(tt.args.funcionarios)
 			assertions.Equal(tt.want, got, tt.msg)

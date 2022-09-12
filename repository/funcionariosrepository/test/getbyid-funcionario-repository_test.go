@@ -63,7 +63,7 @@ func Test_funcionariosRepository_GetByID(t *testing.T) {
 			ctx := context.Background()
 
 			m := new(mocks.IFuncionariosRepository)
-			m.On("GetByID", mock.AnythingOfType("*context.emptyCtx"), tt.args.id).Return(tt.want, nil)
+			m.On("GetByID", mock.AnythingOfType("*context.emptyCtx"), tt.args.id).Return(tt.want, tt.want1)
 
 			got, got1 := m.GetByID(ctx, tt.args.id)
 			assertions.Equal(tt.want, got, tt.msg)

@@ -57,7 +57,7 @@ func Test_funcionariosRepository_GetAll(t *testing.T) {
 			ctx := context.Background()
 
 			m := new(mocks.IFuncionariosRepository)
-			m.On("GetAll", mock.AnythingOfType("*context.emptyCtx")).Return(tt.want, nil)
+			m.On("GetAll", mock.AnythingOfType("*context.emptyCtx")).Return(tt.want, tt.want1)
 
 			got, got1 := m.GetAll(ctx)
 			assertions.Equal(tt.want, got, tt.msg)

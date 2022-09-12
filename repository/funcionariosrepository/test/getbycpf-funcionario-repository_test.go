@@ -54,7 +54,7 @@ func Test_funcionariosRepository_GetByCPF(t *testing.T) {
 			ctx := context.Background()
 
 			m := new(mocks.IFuncionariosRepository)
-			m.On("GetByCPF", mock.AnythingOfType("*context.emptyCtx"), tt.args.cpf).Return(tt.want, nil)
+			m.On("GetByCPF", mock.AnythingOfType("*context.emptyCtx"), tt.args.cpf).Return(tt.want, tt.want1)
 
 			got, got1 := m.GetByCPF(ctx, tt.args.cpf)
 			assertions.Equal(tt.want, got, tt.msg)

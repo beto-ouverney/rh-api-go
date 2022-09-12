@@ -31,7 +31,7 @@ func Test_funcionariosRepository_GetAllCache(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 
 			m := new(mocks.IFuncionariosRepository)
-			m.On("GetAllCache").Return(tt.want, nil)
+			m.On("GetAllCache").Return(tt.want, tt.want1)
 
 			got, got1 := m.GetAllCache()
 			assertions.Equal(tt.want, got, tt.msg)
