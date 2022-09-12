@@ -6,6 +6,7 @@ import (
 	"github.com/beto-ouverney/rh-api/entity"
 )
 
+// GetByCPF gets a funcionario by cpf in database
 func (r *funcionariosRepository) GetByCPF(ctx context.Context, cpf string) (*entity.Funcionario, *customerror.CustomError) {
 	var funcionario entity.Funcionario
 

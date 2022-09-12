@@ -6,6 +6,7 @@ import (
 	"github.com/beto-ouverney/rh-api/entity"
 )
 
+// GetByID get funcionario by id in database
 func (r *funcionariosRepository) GetByID(ctx context.Context, id string) (*entity.Funcionario, *customerror.CustomError) {
 	var funcionario entity.Funcionario
 

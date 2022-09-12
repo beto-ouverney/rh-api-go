@@ -8,6 +8,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+// IFuncionariosRepository presents the interface for the funcionarios repository
 type IFuncionariosRepository interface {
 	Register(ctx context.Context, funcionario entity.Funcionario) (*int64, *customerror.CustomError)
 	GetByID(ctx context.Context, id string) (*entity.Funcionario, *customerror.CustomError)
@@ -23,6 +24,7 @@ type funcionariosRepository struct {
 	sqlx *sqlx.DB
 }
 
+// New creates a new funcionarios repository
 func New() *funcionariosRepository {
 	return &funcionariosRepository{
 		db.ConnectDB(),

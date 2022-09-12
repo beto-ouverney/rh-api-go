@@ -6,6 +6,7 @@ import (
 	"github.com/beto-ouverney/rh-api/db"
 )
 
+// GetAllCache gets all funcionarios in cache
 func (r *funcionariosRepository) GetAllCache() (*string, *customerror.CustomError) {
 	rdb := db.ConnectCacheDB()
 

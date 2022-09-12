@@ -6,6 +6,7 @@ import (
 	"github.com/beto-ouverney/rh-api/entity"
 )
 
+// Register register funcionario in database
 func (r *funcionariosRepository) Register(ctx context.Context, funcionario entity.Funcionario) (*int64, *customerror.CustomError) {
 
 	stmt, err := r.sqlx.PrepareNamedContext(ctx, "INSERT INTO Funcionarios (nome, sobrenome, documento, setor, salario_bruto, data_admissao, saude, dental, transporte, dependente, pensao) "+

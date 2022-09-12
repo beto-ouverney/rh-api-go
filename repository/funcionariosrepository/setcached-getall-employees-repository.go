@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+// SetCacheGetAllEmployees set cache for get all employees
 func (r *funcionariosRepository) SetCacheGetAllEmployees(funcionarios *[]entity.Funcionario) *customerror.CustomError {
 	rdb := db.ConnectCacheDB()
 
