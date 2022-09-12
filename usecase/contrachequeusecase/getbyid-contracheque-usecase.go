@@ -19,11 +19,13 @@ var aliquotasIR = [4]float64{0, 0.075, 0.15, 0.225}
 
 const dependenteDescontoValor = 189.59
 
+// roundFloat is a function to round float
 func roundFloat(val float64, precision uint) float64 {
 	ratio := math.Pow(10, float64(precision))
 	return math.Round(val*ratio) / ratio
 }
 
+// calcINSSIR is a function to calculate INSS and IR values based on salary
 func calcINSSIR(salario float64, faixas, aliquotas [4]float64) (valorDesconto float64) {
 	var faixas2 []float64
 	faixas2 = append(faixas2, faixas[0])
@@ -44,6 +46,7 @@ func calcINSSIR(salario float64, faixas, aliquotas [4]float64) (valorDesconto fl
 	return
 }
 
+// calcIR calculate IR
 func calcIR(salarioTributavel float64, payslip *entity.Contracheque) {
 
 	irValue := calcINSSIR(salarioTributavel, faixasIR, aliquotasIR)
@@ -60,6 +63,7 @@ func calcIR(salarioTributavel float64, payslip *entity.Contracheque) {
 	payslip.Lancamentos = append(payslip.Lancamentos, ir)
 }
 
+// calcINSSIR calculate INSS and IR
 func calcInssIR(payslip *entity.Contracheque, employee entity.Funcionario, wg *sync.WaitGroup) {
 	defer wg.Done()
 	inssValue := 0.00
@@ -85,6 +89,7 @@ func calcInssIR(payslip *entity.Contracheque, employee entity.Funcionario, wg *s
 	}
 }
 
+// calcSalary calculate FGTS
 func calcFGTS(payslip *entity.Contracheque, employee entity.Funcionario, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -97,6 +102,7 @@ func calcFGTS(payslip *entity.Contracheque, employee entity.Funcionario, wg *syn
 	payslip.Lancamentos = append(payslip.Lancamentos, fgts)
 }
 
+// calcBenefits calculate benefits
 func calcBenefits(payslip *entity.Contracheque, employee entity.Funcionario, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -127,6 +133,7 @@ func calcBenefits(payslip *entity.Contracheque, employee entity.Funcionario, wg 
 	}
 }
 
+// GetByIDContrachequeUseCase generate payslip
 func (u *contrachequeUseCase) GetByFuncionarioID(ctx context.Context, employeeID string) (*entity.Contracheque, *customerror.CustomError) {
 	employee, err := u.r.GetByID(ctx, employeeID)
 	if err != nil {
