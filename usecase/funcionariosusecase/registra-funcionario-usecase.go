@@ -3,13 +3,13 @@ package funcionariosusecase
 import (
 	"context"
 	"errors"
-	"fmt"
 	"github.com/beto-ouverney/rh-api/customerror"
 	"github.com/beto-ouverney/rh-api/entity"
 	"github.com/beto-ouverney/rh-api/helpers/cpf"
 	"strings"
 )
 
+// validaData validate data
 func validaData(dataAdmissao string) *customerror.CustomError {
 	data := strings.Split(dataAdmissao, "/")
 	if len(data[0]) < 1 || len(data[0]) > 30 {
@@ -26,6 +26,7 @@ func validaData(dataAdmissao string) *customerror.CustomError {
 	return nil
 }
 
+// validaFuncionario validate funcionario
 func validaFuncionario(f entity.Funcionario) *customerror.CustomError {
 	if f.Nome == "" {
 		return customerror.NewError(customerror.ECONFLICT, "Nome não pode ser vazio", "usecase.validaFuncionario", errors.New("nome não pode ser vazio"), nil)
@@ -54,14 +55,16 @@ func validaFuncionario(f entity.Funcionario) *customerror.CustomError {
 	return nil
 }
 
+// convertData convert data from dd/mm/yyyy to yyyy-mm-dd
 func convertData(dataBR string) (dataEN string) {
 	data := strings.Split(dataBR, "/")
 	dataEN = data[2] + "-" + data[1] + "-" + data[0]
 	return dataEN
 }
 
+// Register validate funcionario and register it in repository
 func (u *funcionariosUseCase) Register(ctx context.Context, funcionario entity.Funcionario) (*int64, *customerror.CustomError) {
-	fmt.Println(funcionario)
+
 	funcionario.Documento = cpf.Unmask(funcionario.Documento)
 
 	err := validaFuncionario(funcionario)

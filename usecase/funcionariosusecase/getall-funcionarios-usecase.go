@@ -7,6 +7,7 @@ import (
 	"github.com/beto-ouverney/rh-api/entity"
 )
 
+// GetAll gets all funcionarios in cache if exist, if not exist get in database and set cache
 func (u *funcionariosUseCase) GetAll(ctx context.Context) (*[]entity.Funcionario, *customerror.CustomError) {
 
 	cache, err := u.r.GetAllCache()

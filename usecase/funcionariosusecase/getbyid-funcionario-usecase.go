@@ -7,6 +7,7 @@ import (
 	"github.com/beto-ouverney/rh-api/entity"
 )
 
+// GetByID check if funcionario exists and return it
 func (u *funcionariosUseCase) GetByID(ctx context.Context, id string) (*entity.Funcionario, *customerror.CustomError) {
 
 	user, err := u.r.GetByID(ctx, id)
