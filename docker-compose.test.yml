@@ -8,7 +8,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-    container_name: rh_api
+    container_name: rh_api_test
     tty: true
     stdin_open: true
     command: bash
@@ -18,22 +18,22 @@ services:
     ports:
       - "8080:8080"
     env_file:
-      - .env.dev
+      - .env
     networks:
-      - dev
+      - test
   redis:
     container_name: redis
     image: redis:7.0.2-alpine
     restart: always
     networks:
-      - dev
+      - test
   db:
-    container_name: rh_db
+    container_name: rh_db_test
     image: postgres
     platform: linux/x86_64
     restart: always
     env_file:
-      - .env.dev
+      - .env
     ports:
       - "5432:5432"
     healthcheck:
@@ -44,7 +44,7 @@ services:
     volumes:
       - ./db/migrations/000001_funcionarios.up.sql:/docker-entrypoint-initdb.d/000001_funcionarios.up.sql
     networks:
-      - dev
+      - test
 networks:
-  dev:
+  test:
     driver: bridge
