@@ -1,4 +1,4 @@
-package employeescontroller
+package funcionarioscontroller
 
 import (
 	"context"
