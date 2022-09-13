@@ -42,7 +42,7 @@ services:
       interval: 10s
       retries: 10
     volumes:
-      - ./db/migrations/000001_funcionarios.up.sql:/docker-entrypoint-initdb.d/000001_funcionarios.up.sql
+      - ./db/migrations/funcionarios.up.test.sql:/docker-entrypoint-initdb.d/funcionarios.up.test.sql
     networks:
       - test
 networks:
