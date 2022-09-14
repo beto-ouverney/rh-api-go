@@ -18,14 +18,14 @@ func GetById(w http.ResponseWriter, r *http.Request) {
 
 	c := funcionarioscontroller.New()
 
-	user, err := c.GetByID(r.Context(), param)
+	response, err := c.GetByID(r.Context(), param)
+	status := http.StatusOK
 	if err != nil {
-		errorHandler(err, w)
+		response, status = errorHandler(err, w)
 	}
-
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(status)
 	w.Header().Set("Content-Type", "application/json")
-	_, errW := w.Write(user)
+	_, errW := w.Write(response)
 	if errW != nil {
 		errorReturn(w, 500, errW.Error())
 	}
