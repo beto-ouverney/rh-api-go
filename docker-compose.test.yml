@@ -18,7 +18,7 @@ services:
     ports:
       - "8080:8080"
     env_file:
-      - .env.test
+      - .env
     networks:
       - test
   redis:
@@ -33,7 +33,7 @@ services:
     platform: linux/x86_64
     restart: always
     env_file:
-      - .env.test
+      - .env
     ports:
       - "5432:5432"
     healthcheck:
