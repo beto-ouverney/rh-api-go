@@ -210,26 +210,26 @@ Todo ele dockerizado.
 Este projeto 
 
 - Clone o repositório
-```bash
+    ```bash
     git@github.com:beto-ouverney/rh-api-go.git
-```
+  ```
 - Entre na pasta do projeto 
 
-```bash
-cd rh-api-go
-```
+  ```bash
+  cd rh-api-go
+  ```
 
 - Utilize o comando abaixo para subir os containers da API, REDIS e POSTGRES
 
-```bash
+   ```bash
    docker-compose -f docker-compose.dev.yml up -d --build
-```
+   ```
 
 - Utilize o comando abaixo para retirar os containers da API, REDIS e POSTGRES
 
-```bash
-  docker-compose -f docker-compose.dev.yaml down --remove-orphans
-```
+  ```bash
+  docker-compose -f docker-compose.dev.yml down --remove-orphans
+  ```
 
 - exitem dois docker-compose para subir a aplicação, um para testes e outro para produção
 para que não haja conflito entre os dados de teste e os dados de uso continuo. Altere o .env.test caso
@@ -237,14 +237,14 @@ seja para testes e .env para produção
 
 - Para rodar o projeto
 
-```bash
+  ```bash
   docker exec -it rh_api bash
-```
+  ```
 Após isso rode o comando abaixo para rodar a API no ambiente de produção:
 
-```bash
+   ```bash
    go run main.go
-```
+   ```
 ## Teste
 
 * O projeto possui testes unitários e de integração, os testes devem rodar preferencialmente no 
@@ -253,37 +253,37 @@ Para rodar subir os containers de teste utilize o comando abaixo:
 
 - Não esqueça de alterar o .env.test para .env caso seja para testes e .env para produção
 
-```bash
+   ```bash
    docker-compose -f docker-compose.test.yml up -d --build
-```
+   ```
 
 - Para rodar os testes
-```bash
+     ```bash
      go test -v ./... 
-```
+     ```
 
 - Para rodar os testes com cores para diferenciar os erros mais facilmente
-```bash
+  ```bash
   go test -v ./... | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/''
   ```
 
 - Caso queira rodar a API no ambiente de teste execute o comando abaixo:
 
-```bash
+   ```bash
    docker exec -it rh_api_test bash
-```
+   ```
 
 Após isso rode o comando abaixo para rodar a API no ambiente de teste:
 
-```bash
+   ```bash
    go run main.go
-```
+   ```
 
 - Utilize o comando abaixo para retirar os containers de testes da API, REDIS e POSTGRES
 
-```bash
-  docker-compose -f docker-compose.test.yaml down --remove-orphans
-```
+  ```bash
+  docker-compose -f docker-compose.test.yml down --remove-orphans
+  ```
 ## Author
 
 - LinkedIn - [Alberto Ouverney Paz](https://www.linkedin.com/in/beto-ouverney-paz/)
